@@ -1,38 +1,58 @@
 {% extends 'admin_panel/base.html' %}
+{% load i18n %}
 
-{% block title %}Вхід - WHMCS Admin Panel{% endblock %}
+{% block title %}{% trans "Login" %} - {% trans "WHMCS Admin Panel" %}{% endblock %}
 
 {% block content %}
 <div class="row justify-content-center">
     <div class="col-md-6 col-lg-4">
         <div class="card shadow">
             <div class="card-header bg-primary text-white text-center">
-                <h4><i class="fas fa-lock"></i> Вхід в систему</h4>
+                <h4><i class="fas fa-lock"></i> {% trans "Login to System" %}</h4>
             </div>
             <div class="card-body">
+                <!-- Language Switcher for Login Page -->
+                <div class="mb-3 text-center">
+                    {% get_current_language as LANGUAGE_CODE %}
+                    {% get_available_languages as LANGUAGES %}
+                    {% get_language_info_list for LANGUAGES as languages %}
+                    <div class="btn-group" role="group">
+                        {% for language in languages %}
+                            <form action="{% url 'set_language' %}" method="post" class="d-inline">
+                                {% csrf_token %}
+                                <input name="next" type="hidden" value="{{ request.get_full_path }}" />
+                                <input name="language" type="hidden" value="{{ language.code }}" />
+                                <button type="submit" class="btn btn-sm {% if language.code == LANGUAGE_CODE %}btn-secondary{% else %}btn-outline-secondary{% endif %}">
+                                    {{ language.name_local }}
+                                </button>
+                            </form>
+                        {% endfor %}
+                    </div>
+                </div>
+                
                 <form method="post">
                     {% csrf_token %}
                     <div class="mb-3">
                         <label for="username" class="form-label">
-                            <i class="fas fa-user"></i> Логін
+                            <i class="fas fa-user"></i> {% trans "Username" %}
                         </label>
                         <input type="text" class="form-control" id="username" name="username" required>
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">
-                            <i class="fas fa-key"></i> Пароль
+                            <i class="fas fa-key"></i> {% trans "Password" %}
                         </label>
                         <input type="password" class="form-control" id="password" name="password" required>
                     </div>
                     <div class="d-grid">
                         <button type="submit" class="btn btn-primary">
-                            <i class="fas fa-sign-in-alt"></i> Увійти
+                            <i class="fas fa-sign-in-alt"></i> {% trans "Login" %}
                         </button>
                     </div>
                 </form>
             </div>
             <div class="card-footer text-center text-muted">
-                <small>WHMCS Admin Panel v1.0</small>
+                <small>{% trans "WHMCS Admin Panel" %} v1.0</small>
             </div>
         </div>
     </div>

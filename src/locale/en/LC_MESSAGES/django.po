@@ -1,0 +1,218 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-14 12:47+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: admin_panel/templates/admin_panel/base.html:7
+#: admin_panel/templates/admin_panel/login.html:4
+#: admin_panel/templates/admin_panel/login.html:55
+msgid "WHMCS Admin Panel"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/base.html:16
+#: admin_panel/templates/admin_panel/dashboard.html:4
+#: admin_panel/templates/admin_panel/profile.html:4
+msgid "WHMCS Admin"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/base.html:20
+#: admin_panel/templates/admin_panel/dashboard.html:4
+#: admin_panel/templates/admin_panel/dashboard.html:9
+#: admin_panel/templates/admin_panel/profile.html:12
+msgid "Dashboard"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/base.html:23
+#: admin_panel/templates/admin_panel/profile.html:13
+msgid "Profile"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/base.html:29
+msgid "Language"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/base.html:51
+msgid "Logout"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:10
+#, python-format
+msgid "Welcome, %(name)s!"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:18
+msgid "Users"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:22
+msgid "Total Users"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:29
+msgid "Services"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:33
+msgid "Active Services"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:40
+msgid "Invoices"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:44
+msgid "Unpaid Invoices"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:51
+msgid "Tickets"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:55
+msgid "Open Tickets"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:65
+msgid "Quick Actions"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:70
+msgid "Add New Client"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:73
+msgid "Create New Service"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:76
+msgid "Create Invoice"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:79
+#: admin_panel/templates/admin_panel/profile.html:4
+#: admin_panel/templates/admin_panel/profile.html:9
+msgid "Profile Settings"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:88
+msgid "System Information"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:93
+msgid "Django Version"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:97
+msgid "Database"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:101
+#: admin_panel/templates/admin_panel/profile.html:92
+msgid "Last Login"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:105
+#: admin_panel/templates/admin_panel/profile.html:76
+msgid "Status"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/dashboard.html:106
+msgid "Online"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/login.html:4
+#: admin_panel/templates/admin_panel/login.html:49
+msgid "Login"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/login.html:11
+msgid "Login to System"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/login.html:37
+#: admin_panel/templates/admin_panel/profile.html:50
+#: admin_panel/templates/admin_panel/profile.html:72
+msgid "Username"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/login.html:43
+msgid "Password"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:23
+msgid "Edit Profile"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:31
+msgid "First Name"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:38
+msgid "Last Name"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:45
+msgid "Email"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:52
+msgid "Username cannot be changed"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:55
+msgid "Save Changes"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:58
+msgid "Settings"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:67
+msgid "Account Information"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:79
+msgid "Superadministrator"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:81
+msgid "Administrator"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:83
+msgid "User"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:88
+msgid "Registration Date"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:101
+#: admin_panel/templates/admin_panel/profile.html:107
+msgid "Security"
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:104
+msgid ""
+"To change password, contact system administrator or use password recovery "
+"function."
+msgstr ""
+
+#: admin_panel/templates/admin_panel/profile.html:107
+msgid "Standard Django admin panel is disabled for system protection."
+msgstr ""
