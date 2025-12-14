@@ -105,6 +105,8 @@ RUN chmod +x /tmp/check_translations.sh
 RUN /tmp/check_translations.sh && rm /tmp/check_translations.sh
 ```
 
+**Примітка:** Для розробки використовується новий Python скрипт `dev_tools/translations.py`, але в Docker збірці залишається bash скрипт для простоти та надійності контейнера.
+
 ### Що відбувається під час валідації:
 
 1. **Пошук файлів перекладів** - знаходить всі .po файли
@@ -135,6 +137,33 @@ RUN /tmp/check_translations.sh && rm /tmp/check_translations.sh
   - locale/en/LC_MESSAGES/django.mo (1234 bytes)
   - locale/uk/LC_MESSAGES/django.mo (5678 bytes)
 [SUCCESS] Валідація перекладів завершена успішно!
+```
+
+## Інтеграція з dev_tools
+
+### Розробка поза Docker
+Для розробки поза Docker використовуйте новий Python скрипт:
+
+```bash
+# Оновити переклади локально
+python dev_tools/translations.py update
+
+# Перевірити якість
+python dev_tools/translations.py test
+
+# Показати статистику
+python dev_tools/translations.py stats
+```
+
+### Синхронізація з Docker
+Після оновлення перекладів локально, перебудуйте контейнер:
+
+```bash
+# Оновити переклади
+make translations
+
+# Перебудувати контейнер
+make dev-build
 ```
 
 ## Налагодження

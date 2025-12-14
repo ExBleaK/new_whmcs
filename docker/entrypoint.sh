@@ -72,9 +72,20 @@ fi
 
 # Compile translations if .po files are newer than .mo files
 print_info "Checking translation files"
-if find locale -name "*.po" -newer locale -name "*.mo" 2>/dev/null | grep -q .; then
+po_newer_than_mo=false
+for po_file in $(find locale -name "*.po" 2>/dev/null); do
+    mo_file="${po_file%.po}.mo"
+    if [ ! -f "$mo_file" ] || [ "$po_file" -nt "$mo_file" ]; then
+        po_newer_than_mo=true
+        break
+    fi
+done
+
+if [ "$po_newer_than_mo" = "true" ]; then
     print_info "Recompiling translations"
     python manage.py compilemessages
+else
+    print_info "Translation files are up to date"
 fi
 
 print_success "Initialization complete, starting application"

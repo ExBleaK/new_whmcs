@@ -22,11 +22,15 @@ msgstr "Dashboard"
 msgid "Profile"
 msgstr "Profile"
 
-#: admin_panel/templates/admin_panel/base.html:29
+#: admin_panel/templates/admin_panel/base.html:28
+msgid "Dev Tools"
+msgstr "Dev Tools"
+
+#: admin_panel/templates/admin_panel/base.html:35
 msgid "Language"
 msgstr "Language"
 
-#: admin_panel/templates/admin_panel/base.html:51
+#: admin_panel/templates/admin_panel/base.html:57
 msgid "Logout"
 msgstr "Logout"
 

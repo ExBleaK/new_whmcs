@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'admin_panel',
 ]
 
+# Додаємо dev_dashboard тільки в DEBUG режимі
+if DEBUG:
+    INSTALLED_APPS.append('dev_dashboard')
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

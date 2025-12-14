@@ -19,6 +19,7 @@ help:
 	@echo "  make translations     - Update and compile translations"
 	@echo "  make translations-uk  - Update Ukrainian translations only"
 	@echo "  make translations-test - Test translation quality"
+	@echo "  make translations-stats - Show translation statistics"
 	@echo "  make fix-english      - Fix English translations (msgstr = msgid)"
 	@echo "  make add-lang LANG=de NAME=Deutsch - Add new language"
 	@echo ""
@@ -48,19 +49,23 @@ prod-build:
 # Translation management
 translations:
 	@echo "Updating all translations..."
-	./dev_tools/translations/update_translations.sh
+	python dev_tools/translations.py update
 
 translations-uk:
 	@echo "Updating Ukrainian translations..."
-	./dev_tools/translations/update_translations.sh uk
+	python dev_tools/translations.py update uk
 
 translations-test:
 	@echo "Testing translation quality..."
-	./dev_tools/translations/test_translations.sh
+	python dev_tools/translations.py test
+
+translations-stats:
+	@echo "Showing translation statistics..."
+	python dev_tools/translations.py stats
 
 fix-english:
 	@echo "Fixing English translations..."
-	./dev_tools/translations/fix_english.sh
+	python dev_tools/translations.py fix-english
 
 add-lang:
 	@if [ -z "$(LANG)" ] || [ -z "$(NAME)" ]; then \
@@ -68,7 +73,7 @@ add-lang:
 		exit 1; \
 	fi
 	@echo "Adding language: $(NAME) ($(LANG))"
-	./dev_tools/translations/add_language.sh $(LANG) "$(NAME)"
+	python dev_tools/translations.py add $(LANG) "$(NAME)"
 
 # Testing
 test:

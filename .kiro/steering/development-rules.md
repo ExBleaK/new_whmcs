@@ -9,6 +9,7 @@ inclusion: always
 ### ❌ NEVER use these interactive commands:
 - `git log --oneline` (opens pager, requires manual exit)
 - `git log` without limits
+- `git branch` (opens pager, requires manual exit)
 - `less`, `more`, `cat` for large files
 - `vim`, `nano`, or any interactive editors
 - `git rebase -i` (interactive rebase)
@@ -19,6 +20,8 @@ inclusion: always
 - `git show --name-only HEAD` (show last commit)
 - `git status --porcelain` (machine-readable status)
 - `git diff --name-only` (just file names)
+- `git branch --list` (list branches without pager)
+- `git branch -a --list` (list all branches without pager)
 
 ### 🚫 CRITICAL: Git Commit Policy
 - **NEVER make git commits unless explicitly requested**

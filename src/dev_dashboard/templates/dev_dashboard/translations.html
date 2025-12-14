@@ -1,0 +1,145 @@
+{% extends 'dev_dashboard/base.html' %}
+
+{% block page_title %}Translations Info{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-translate"></i> Translation Status
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <p><strong>Default Language:</strong> <code>{{ default_language }}</code></p>
+                        <p><strong>Internationalization:</strong> 
+                            {% if use_i18n %}
+                                <span class="badge bg-success">Enabled</span>
+                            {% else %}
+                                <span class="badge bg-danger">Disabled</span>
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <p><strong>Locale Paths:</strong></p>
+                        {% for path in locale_paths %}
+                            <code class="d-block">{{ path }}</code>
+                        {% empty %}
+                            <code>Default (locale/)</code>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table table-hover">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>Language</th>
+                                <th>Code</th>
+                                <th>Progress</th>
+                                <th>Strings</th>
+                                <th>Files</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for lang in languages %}
+                            <tr>
+                                <td>
+                                    <strong>{{ lang.name }}</strong>
+                                    {% if lang.code == default_language %}
+                                        <span class="badge bg-primary ms-1">Default</span>
+                                    {% endif %}
+                                </td>
+                                <td><code>{{ lang.code }}</code></td>
+                                <td>
+                                    <div class="progress" style="height: 20px;">
+                                        <div class="progress-bar 
+                                            {% if lang.percentage >= 90 %}bg-success
+                                            {% elif lang.percentage >= 70 %}bg-warning
+                                            {% else %}bg-danger{% endif %}" 
+                                            role="progressbar" 
+                                            style="width: {{ lang.percentage }}%">
+                                            {{ lang.percentage }}%
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <small class="text-muted">
+                                        {{ lang.translated_strings }}/{{ lang.total_strings }}
+                                        {% if lang.empty_strings > 0 %}
+                                            <br><span class="text-warning">{{ lang.empty_strings }} empty</span>
+                                        {% endif %}
+                                    </small>
+                                </td>
+                                <td>
+                                    <div class="d-flex flex-column">
+                                        {% if lang.po_exists %}
+                                            <span class="badge bg-success mb-1">PO: {{ lang.po_size|filesizeformat }}</span>
+                                        {% else %}
+                                            <span class="badge bg-danger mb-1">PO: Missing</span>
+                                        {% endif %}
+                                        
+                                        {% if lang.mo_exists %}
+                                            <span class="badge bg-success">MO: {{ lang.mo_size|filesizeformat }}</span>
+                                        {% else %}
+                                            <span class="badge bg-warning">MO: Not compiled</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td>
+                                    {% if lang.percentage == 100 %}
+                                        <span class="badge bg-success">Complete</span>
+                                    {% elif lang.percentage >= 80 %}
+                                        <span class="badge bg-warning">Almost Ready</span>
+                                    {% elif lang.percentage > 0 %}
+                                        <span class="badge bg-info">In Progress</span>
+                                    {% else %}
+                                        <span class="badge bg-secondary">Not Started</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-terminal"></i> Translation Commands</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Update All</h6>
+                        <div class="code-block">
+                            <code>python dev_tools/translations.py update</code>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Test Quality</h6>
+                        <div class="code-block">
+                            <code>python dev_tools/translations.py test</code>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Add Language</h6>
+                        <div class="code-block">
+                            <code>python dev_tools/translations.py add de Deutsch</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

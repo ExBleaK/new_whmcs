@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
+from django.conf import settings
 
 
 def admin_login(request):
@@ -21,7 +22,9 @@ def admin_login(request):
         else:
             messages.error(request, 'Невірний логін або пароль, або у вас немає прав адміністратора')
     
-    return render(request, 'admin_panel/login.html')
+    return render(request, 'admin_panel/login.html', {
+        'debug': settings.DEBUG
+    })
 
 
 @login_required
@@ -32,7 +35,8 @@ def admin_dashboard(request):
         return redirect('admin_login')
     
     return render(request, 'admin_panel/dashboard.html', {
-        'user': request.user
+        'user': request.user,
+        'debug': settings.DEBUG
     })
 
 
@@ -53,7 +57,8 @@ def admin_profile(request):
         return redirect('admin_profile')
     
     return render(request, 'admin_panel/profile.html', {
-        'user': request.user
+        'user': request.user,
+        'debug': settings.DEBUG
     })
 
 

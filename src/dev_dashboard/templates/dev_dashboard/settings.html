@@ -1,0 +1,153 @@
+{% extends 'dev_dashboard/base.html' %}
+
+{% block page_title %}Django Settings{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-warning" role="alert">
+            <i class="bi bi-shield-exclamation"></i>
+            <strong>Security Notice:</strong> Sensitive settings (passwords, keys, tokens) are hidden for security.
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-info-circle"></i> Version Info
+                </h6>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless table-sm">
+                    <tr>
+                        <td><strong>Django:</strong></td>
+                        <td><code>{{ django_version }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Python:</strong></td>
+                        <td><code>{{ python_version|truncatechars:20 }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Debug:</strong></td>
+                        <td>
+                            {% if debug %}
+                                <span class="badge bg-warning">ON</span>
+                            {% else %}
+                                <span class="badge bg-success">OFF</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0">
+                    <i class="bi bi-search"></i> Settings Search
+                </h6>
+            </div>
+            <div class="card-body">
+                <input type="text" 
+                       class="form-control" 
+                       id="settingsSearch" 
+                       placeholder="Search settings..."
+                       onkeyup="filterSettings()">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-gear"></i> Django Settings
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive" style="max-height: 600px; overflow-y: auto;">
+                    <table class="table table-hover" id="settingsTable">
+                        <thead class="table-dark sticky-top">
+                            <tr>
+                                <th>Setting</th>
+                                <th>Value</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in settings.items %}
+                            <tr class="setting-row">
+                                <td>
+                                    <code class="setting-name">{{ key }}</code>
+                                    {% if "SECRET" in key or "PASSWORD" in key or "KEY" in key %}
+                                        <i class="bi bi-shield-lock text-warning ms-1" title="Sensitive setting"></i>
+                                    {% endif %}
+                                </td>
+                                <td class="setting-value">
+                                    {% if "***HIDDEN***" in value|default:"" %}
+                                        <span class="badge bg-warning">{{ value }}</span>
+                                    {% elif value is None %}
+                                        <span class="text-muted">None</span>
+                                    {% elif value == True %}
+                                        <span class="badge bg-success">True</span>
+                                    {% elif value == False %}
+                                        <span class="badge bg-danger">False</span>
+                                    {% elif value|length > 100 %}
+                                        <details>
+                                            <summary class="btn btn-sm btn-outline-secondary">
+                                                Show {{ value|length }} chars
+                                            </summary>
+                                            <pre class="mt-2"><code>{{ value }}</code></pre>
+                                        </details>
+                                    {% else %}
+                                        <code>{{ value }}</code>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    <small class="badge bg-light text-dark">{{ value|default:"None"|truncatechars:1|add:value.__class__.__name__ }}</small>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function filterSettings() {
+    const input = document.getElementById('settingsSearch');
+    const filter = input.value.toLowerCase();
+    const table = document.getElementById('settingsTable');
+    const rows = table.getElementsByClassName('setting-row');
+
+    for (let i = 0; i < rows.length; i++) {
+        const nameCell = rows[i].getElementsByClassName('setting-name')[0];
+        const valueCell = rows[i].getElementsByClassName('setting-value')[0];
+        
+        if (nameCell && valueCell) {
+            const nameText = nameCell.textContent || nameCell.innerText;
+            const valueText = valueCell.textContent || valueCell.innerText;
+            
+            if (nameText.toLowerCase().indexOf(filter) > -1 || 
+                valueText.toLowerCase().indexOf(filter) > -1) {
+                rows[i].style.display = '';
+            } else {
+                rows[i].style.display = 'none';
+            }
+        }
+    }
+}
+</script>
+{% endblock %}
