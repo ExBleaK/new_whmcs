@@ -19,6 +19,7 @@ help:
 	@echo "  make translations     - Update and compile translations"
 	@echo "  make translations-uk  - Update Ukrainian translations only"
 	@echo "  make translations-test - Test translation quality"
+	@echo "  make fix-english      - Fix English translations (msgstr = msgid)"
 	@echo "  make add-lang LANG=de NAME=Deutsch - Add new language"
 	@echo ""
 	@echo "Testing & Maintenance:"
@@ -56,6 +57,10 @@ translations-uk:
 translations-test:
 	@echo "Testing translation quality..."
 	./dev_tools/translations/test_translations.sh
+
+fix-english:
+	@echo "Fixing English translations..."
+	./dev_tools/translations/fix_english.sh
 
 add-lang:
 	@if [ -z "$(LANG)" ] || [ -z "$(NAME)" ]; then \
