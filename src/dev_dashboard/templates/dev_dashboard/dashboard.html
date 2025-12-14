@@ -1,0 +1,133 @@
+{% extends 'dev_dashboard/base.html' %}
+
+{% block page_title %}Development Dashboard{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="alert alert-info" role="alert">
+            <i class="bi bi-info-circle"></i>
+            <strong>Welcome to Development Dashboard!</strong> 
+            Цей інструмент доступний тільки в DEBUG режимі і показує детальну інформацію про ваш Django проект.
+        </div>
+    </div>
+</div>
+
+<div class="row g-4">
+    <!-- URL Patterns Card -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-link-45deg display-4 text-primary mb-3"></i>
+                <h5 class="card-title">URL Patterns</h5>
+                <p class="card-text">Перегляньте всі доступні URL маршрути в проекті</p>
+                <a href="{% url 'dev_dashboard:urls' %}" class="btn btn-primary">
+                    <i class="bi bi-eye"></i> Переглянути URLs
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Django Apps Card -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-puzzle display-4 text-success mb-3"></i>
+                <h5 class="card-title">Django Apps</h5>
+                <p class="card-text">Інформація про всі встановлені Django додатки та моделі</p>
+                <a href="{% url 'dev_dashboard:apps' %}" class="btn btn-success">
+                    <i class="bi bi-list-ul"></i> Переглянути Apps
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Database Card -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-database display-4 text-warning mb-3"></i>
+                <h5 class="card-title">Database Info</h5>
+                <p class="card-text">Статистика бази даних, таблиці та підключення</p>
+                <a href="{% url 'dev_dashboard:database' %}" class="btn btn-warning">
+                    <i class="bi bi-table"></i> База даних
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Translations Card -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-translate display-4 text-info mb-3"></i>
+                <h5 class="card-title">Translations</h5>
+                <p class="card-text">Статус перекладів для всіх підтримуваних мов</p>
+                <a href="{% url 'dev_dashboard:translations' %}" class="btn btn-info">
+                    <i class="bi bi-globe"></i> Переклади
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings Card -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-gear display-4 text-secondary mb-3"></i>
+                <h5 class="card-title">Django Settings</h5>
+                <p class="card-text">Перегляд поточних налаштувань Django проекту</p>
+                <a href="{% url 'dev_dashboard:settings' %}" class="btn btn-secondary">
+                    <i class="bi bi-sliders"></i> Налаштування
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- System Info Card -->
+    <div class="col-md-6 col-lg-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="bi bi-cpu display-4 text-danger mb-3"></i>
+                <h5 class="card-title">System Info</h5>
+                <p class="card-text">Інформація про систему, Python, Django версії</p>
+                <a href="{% url 'dev_dashboard:system' %}" class="btn btn-danger">
+                    <i class="bi bi-info-square"></i> Система
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0"><i class="bi bi-lightbulb"></i> Quick Actions</h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Переклади</h6>
+                        <div class="code-block">
+                            <code>python dev_tools/translations.py stats</code>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Міграції</h6>
+                        <div class="code-block">
+                            <code>python src/manage.py showmigrations</code>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Тести</h6>
+                        <div class="code-block">
+                            <code>python src/manage.py test</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

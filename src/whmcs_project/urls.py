@@ -38,3 +38,10 @@ urlpatterns += i18n_patterns(
     path('', redirect_to_admin_panel),
     prefix_default_language=False
 )
+
+# Додаємо dev dashboard тільки в DEBUG режимі
+from django.conf import settings
+if settings.DEBUG:
+    urlpatterns += [
+        path('dev/', include('dev_dashboard.urls')),
+    ]

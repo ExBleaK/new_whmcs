@@ -1,0 +1,116 @@
+{% extends 'dev_dashboard/base.html' %}
+
+{% block page_title %}Database Info{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-database"></i> Database Connection
+                </h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <tr>
+                        <td><strong>Engine:</strong></td>
+                        <td><code>{{ db_info.engine }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Database:</strong></td>
+                        <td><code>{{ db_info.name }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Host:</strong></td>
+                        <td><code>{{ db_info.host }}</code></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Port:</strong></td>
+                        <td><code>{{ db_info.port }}</code></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-bar-chart"></i> Statistics
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row text-center">
+                    <div class="col-6">
+                        <div class="border-end">
+                            <h3 class="text-primary">{{ tables_count }}</h3>
+                            <small class="text-muted">Tables</small>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <h3 class="text-success">{{ user_count }}</h3>
+                        <small class="text-muted">Users</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="mb-0">
+                    <i class="bi bi-table"></i> Database Tables
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    {% for table in tables %}
+                    <div class="col-md-4 col-lg-3 mb-2">
+                        <span class="badge bg-light text-dark w-100 text-start">
+                            <i class="bi bi-table me-1"></i>{{ table }}
+                        </span>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-terminal"></i> Database Commands</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h6>Show Migrations</h6>
+                        <div class="code-block">
+                            <code>python src/manage.py showmigrations</code>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Create Migration</h6>
+                        <div class="code-block">
+                            <code>python src/manage.py makemigrations</code>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h6>Apply Migrations</h6>
+                        <div class="code-block">
+                            <code>python src/manage.py migrate</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

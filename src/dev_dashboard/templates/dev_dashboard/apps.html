@@ -1,0 +1,158 @@
+{% extends 'dev_dashboard/base.html' %}
+
+{% block page_title %}Django Apps{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">
+                    <i class="bi bi-puzzle"></i> Installed Django Apps
+                </h5>
+                <span class="badge bg-primary">{{ total_apps }} Apps</span>
+            </div>
+            <div class="card-body">
+                <div class="accordion" id="appsAccordion">
+                    {% for app in apps %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ forloop.counter }}">
+                            <button class="accordion-button {% if not forloop.first %}collapsed{% endif %}" 
+                                    type="button" 
+                                    data-bs-toggle="collapse" 
+                                    data-bs-target="#collapse{{ forloop.counter }}" 
+                                    aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" 
+                                    aria-controls="collapse{{ forloop.counter }}">
+                                <div class="d-flex justify-content-between align-items-center w-100 me-3">
+                                    <div>
+                                        <strong>{{ app.verbose_name }}</strong>
+                                        <small class="text-muted ms-2">({{ app.name }})</small>
+                                    </div>
+                                    <div>
+                                        <span class="badge bg-secondary me-2">{{ app.models_count }} models</span>
+                                        {% if "admin_panel" in app.name %}
+                                            <span class="badge bg-success">Custom</span>
+                                        {% elif "django.contrib" in app.name %}
+                                            <span class="badge bg-info">Django</span>
+                                        {% elif "dev_dashboard" in app.name %}
+                                            <span class="badge bg-warning">Dev Tool</span>
+                                        {% else %}
+                                            <span class="badge bg-primary">Third Party</span>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </button>
+                        </h2>
+                        <div id="collapse{{ forloop.counter }}" 
+                             class="accordion-collapse collapse {% if forloop.first %}show{% endif %}" 
+                             aria-labelledby="heading{{ forloop.counter }}" 
+                             data-bs-parent="#appsAccordion">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <h6>App Info:</h6>
+                                        <ul class="list-unstyled">
+                                            <li><strong>Name:</strong> <code>{{ app.name }}</code></li>
+                                            <li><strong>Label:</strong> <code>{{ app.label }}</code></li>
+                                            <li><strong>Path:</strong> <small><code>{{ app.path }}</code></small></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <h6>Models ({{ app.models_count }}):</h6>
+                                        {% if app.models %}
+                                            <div class="table-responsive">
+                                                <table class="table table-sm">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Model</th>
+                                                            <th>Table</th>
+                                                            <th>Fields</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        {% for model in app.models %}
+                                                        <tr>
+                                                            <td><code>{{ model.name }}</code></td>
+                                                            <td><small><code>{{ model.table }}</code></small></td>
+                                                            <td>
+                                                                <span class="badge bg-light text-dark">{{ model.fields_count }}</span>
+                                                                <div class="mt-1">
+                                                                    {% for field in model.fields %}
+                                                                        <small class="badge bg-outline-secondary me-1">{{ field }}</small>
+                                                                    {% endfor %}
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        {% endfor %}
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        {% else %}
+                                            <p class="text-muted">No models defined</p>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <h6 class="mb-0"><i class="bi bi-info-circle"></i> App Categories</h6>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h6><span class="badge bg-success">Custom Apps</span></h6>
+                        <ul class="list-unstyled">
+                            {% for app in apps %}
+                                {% if "admin_panel" in app.name %}
+                                    <li><code>{{ app.name }}</code></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h6><span class="badge bg-info">Django Core</span></h6>
+                        <ul class="list-unstyled">
+                            {% for app in apps %}
+                                {% if "django.contrib" in app.name %}
+                                    <li><small><code>{{ app.label }}</code></small></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h6><span class="badge bg-warning">Dev Tools</span></h6>
+                        <ul class="list-unstyled">
+                            {% for app in apps %}
+                                {% if "dev_dashboard" in app.name %}
+                                    <li><code>{{ app.name }}</code></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h6><span class="badge bg-primary">Third Party</span></h6>
+                        <ul class="list-unstyled">
+                            {% for app in apps %}
+                                {% if "django.contrib" not in app.name and "admin_panel" not in app.name and "dev_dashboard" not in app.name %}
+                                    <li><code>{{ app.name }}</code></li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
