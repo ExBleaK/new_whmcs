@@ -21,23 +21,51 @@ services:
     build:
       context: ..
       dockerfile: docker/Dockerfile
+      args:
+        BUILD_MODE: development
+        ENABLE_HEALTHCHECK: false
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
     environment:
+      - BUILD_MODE=development
       - DEBUG=1
       - DB_NAME=whmcs_db
       - DB_USER=whmcs_user
       - DB_PASSWORD=whmcs_password
       - DB_HOST=db
       - DB_PORT=5432
+      - ADMIN_USERNAME=admin
+      - ADMIN_PASSWORD=admin123
+      - ADMIN_EMAIL=admin@whmcs.local
     volumes:
       - ../src:/app
-    command: >
-      sh -c "python manage.py migrate &&
-             python manage.py runserver 0.0.0.0:8000"
+
+  # Production build with optimizations
+  web-prod:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+      args:
+        BUILD_MODE: production
+        ENABLE_HEALTHCHECK: true
+    ports:
+      - "8001:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - BUILD_MODE=production
+      - DEBUG=0
+      - DB_NAME=whmcs_db
+      - DB_USER=whmcs_user
+      - DB_PASSWORD=whmcs_password
+      - DB_HOST=db
+      - DB_PORT=5432
+    profiles:
+      - production
 
 volumes:
   postgres_data:

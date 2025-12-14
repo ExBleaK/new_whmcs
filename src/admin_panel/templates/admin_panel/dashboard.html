@@ -1,0 +1,113 @@
+{% extends 'admin_panel/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Dashboard" %} - {% trans "WHMCS Admin" %}{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-tachometer-alt"></i> {% trans "Dashboard" %}</h1>
+        <p class="text-muted">{% blocktrans with name=user.get_full_name|default:user.username %}Welcome, {{ name }}!{% endblocktrans %}</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-header">
+                <i class="fas fa-users"></i> {% trans "Users" %}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">{% trans "Total Users" %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-header">
+                <i class="fas fa-server"></i> {% trans "Services" %}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">{% trans "Active Services" %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-header">
+                <i class="fas fa-file-invoice-dollar"></i> {% trans "Invoices" %}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">{% trans "Unpaid Invoices" %}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-header">
+                <i class="fas fa-ticket-alt"></i> {% trans "Tickets" %}
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">{% trans "Open Tickets" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-line"></i> {% trans "Quick Actions" %}</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-user-plus"></i> {% trans "Add New Client" %}
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-plus"></i> {% trans "Create New Service" %}
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-file-invoice"></i> {% trans "Create Invoice" %}
+                    </a>
+                    <a href="{% url 'admin_profile' %}" class="list-group-item list-group-item-action">
+                        <i class="fas fa-cog"></i> {% trans "Profile Settings" %}
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle"></i> {% trans "System Information" %}</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <td><strong>{% trans "Django Version" %}:</strong></td>
+                        <td>6.0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{% trans "Database" %}:</strong></td>
+                        <td>PostgreSQL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{% trans "Last Login" %}:</strong></td>
+                        <td>{{ user.last_login|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>{% trans "Status" %}:</strong></td>
+                        <td><span class="badge bg-success">{% trans "Online" %}</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

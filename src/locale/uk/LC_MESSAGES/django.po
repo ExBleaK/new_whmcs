@@ -1,0 +1,222 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: WHMCS Admin Panel\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-12-14 12:42+0000\n"
+"PO-Revision-Date: 2025-12-14 12:35+0000\n"
+"Last-Translator: Admin <admin@example.com>\n"
+"Language-Team: Ukrainian <uk@li.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: admin_panel/templates/admin_panel/base.html:7
+#: admin_panel/templates/admin_panel/login.html:4
+#: admin_panel/templates/admin_panel/login.html:55
+msgid "WHMCS Admin Panel"
+msgstr "WHMCS Адмін Панель"
+
+#: admin_panel/templates/admin_panel/base.html:16
+#: admin_panel/templates/admin_panel/dashboard.html:4
+#: admin_panel/templates/admin_panel/profile.html:4
+msgid "WHMCS Admin"
+msgstr "WHMCS Адмін"
+
+#: admin_panel/templates/admin_panel/base.html:20
+#: admin_panel/templates/admin_panel/dashboard.html:4
+#: admin_panel/templates/admin_panel/dashboard.html:9
+#: admin_panel/templates/admin_panel/profile.html:12
+msgid "Dashboard"
+msgstr "Панель управління"
+
+#: admin_panel/templates/admin_panel/base.html:23
+#: admin_panel/templates/admin_panel/profile.html:13
+msgid "Profile"
+msgstr "Профіль"
+
+#: admin_panel/templates/admin_panel/base.html:29
+msgid "Language"
+msgstr "Мова"
+
+#: admin_panel/templates/admin_panel/base.html:51
+msgid "Logout"
+msgstr "Вихід"
+
+#: admin_panel/templates/admin_panel/dashboard.html:10
+#, python-format
+msgid "Welcome, %(name)s!"
+msgstr "Ласкаво просимо, %(name)s!"
+
+#: admin_panel/templates/admin_panel/dashboard.html:18
+msgid "Users"
+msgstr "Користувачі"
+
+#: admin_panel/templates/admin_panel/dashboard.html:22
+msgid "Total Users"
+msgstr "Всього користувачів"
+
+#: admin_panel/templates/admin_panel/dashboard.html:29
+msgid "Services"
+msgstr "Сервіси"
+
+#: admin_panel/templates/admin_panel/dashboard.html:33
+msgid "Active Services"
+msgstr "Активних сервісів"
+
+#: admin_panel/templates/admin_panel/dashboard.html:40
+msgid "Invoices"
+msgstr "Рахунки"
+
+#: admin_panel/templates/admin_panel/dashboard.html:44
+msgid "Unpaid Invoices"
+msgstr "Неоплачених рахунків"
+
+#: admin_panel/templates/admin_panel/dashboard.html:51
+msgid "Tickets"
+msgstr "Тікети"
+
+#: admin_panel/templates/admin_panel/dashboard.html:55
+msgid "Open Tickets"
+msgstr "Відкритих тікетів"
+
+#: admin_panel/templates/admin_panel/dashboard.html:65
+msgid "Quick Actions"
+msgstr "Швидкі дії"
+
+#: admin_panel/templates/admin_panel/dashboard.html:70
+msgid "Add New Client"
+msgstr "Додати нового клієнта"
+
+#: admin_panel/templates/admin_panel/dashboard.html:73
+msgid "Create New Service"
+msgstr "Створити новий сервіс"
+
+#: admin_panel/templates/admin_panel/dashboard.html:76
+msgid "Create Invoice"
+msgstr "Створити рахунок"
+
+#: admin_panel/templates/admin_panel/dashboard.html:79
+#: admin_panel/templates/admin_panel/profile.html:4
+#: admin_panel/templates/admin_panel/profile.html:9
+msgid "Profile Settings"
+msgstr "Налаштування профілю"
+
+#: admin_panel/templates/admin_panel/dashboard.html:88
+msgid "System Information"
+msgstr "Інформація про систему"
+
+#: admin_panel/templates/admin_panel/dashboard.html:93
+msgid "Django Version"
+msgstr "Версія Django"
+
+#: admin_panel/templates/admin_panel/dashboard.html:97
+msgid "Database"
+msgstr "База даних"
+
+#: admin_panel/templates/admin_panel/dashboard.html:101
+#: admin_panel/templates/admin_panel/profile.html:92
+msgid "Last Login"
+msgstr "Останній вхід"
+
+#: admin_panel/templates/admin_panel/dashboard.html:105
+#: admin_panel/templates/admin_panel/profile.html:76
+msgid "Status"
+msgstr "Статус"
+
+#: admin_panel/templates/admin_panel/dashboard.html:106
+msgid "Online"
+msgstr "Онлайн"
+
+#: admin_panel/templates/admin_panel/login.html:4
+#: admin_panel/templates/admin_panel/login.html:49
+msgid "Login"
+msgstr "Вхід"
+
+#: admin_panel/templates/admin_panel/login.html:11
+msgid "Login to System"
+msgstr "Вхід в систему"
+
+#: admin_panel/templates/admin_panel/login.html:37
+#: admin_panel/templates/admin_panel/profile.html:50
+#: admin_panel/templates/admin_panel/profile.html:72
+msgid "Username"
+msgstr "Логін"
+
+#: admin_panel/templates/admin_panel/login.html:43
+msgid "Password"
+msgstr "Пароль"
+
+#: admin_panel/templates/admin_panel/profile.html:23
+msgid "Edit Profile"
+msgstr "Редагувати профіль"
+
+#: admin_panel/templates/admin_panel/profile.html:31
+msgid "First Name"
+msgstr "Ім'я"
+
+#: admin_panel/templates/admin_panel/profile.html:38
+msgid "Last Name"
+msgstr "Прізвище"
+
+#: admin_panel/templates/admin_panel/profile.html:45
+msgid "Email"
+msgstr "Email"
+
+#: admin_panel/templates/admin_panel/profile.html:52
+msgid "Username cannot be changed"
+msgstr "Логін не можна змінити"
+
+#: admin_panel/templates/admin_panel/profile.html:55
+msgid "Save Changes"
+msgstr "Зберегти зміни"
+
+#: admin_panel/templates/admin_panel/profile.html:58
+msgid "Settings"
+msgstr "Налаштування"
+
+#: admin_panel/templates/admin_panel/profile.html:67
+msgid "Account Information"
+msgstr "Інформація про акаунт"
+
+#: admin_panel/templates/admin_panel/profile.html:79
+msgid "Superadministrator"
+msgstr "Суперадміністратор"
+
+#: admin_panel/templates/admin_panel/profile.html:81
+msgid "Administrator"
+msgstr "Адміністратор"
+
+#: admin_panel/templates/admin_panel/profile.html:83
+msgid "User"
+msgstr "Користувач"
+
+#: admin_panel/templates/admin_panel/profile.html:88
+msgid "Registration Date"
+msgstr "Дата реєстрації"
+
+#: admin_panel/templates/admin_panel/profile.html:101
+#: admin_panel/templates/admin_panel/profile.html:107
+msgid "Security"
+msgstr "Безпека"
+
+#: admin_panel/templates/admin_panel/profile.html:104
+msgid ""
+"To change password, contact system administrator or use password recovery "
+"function."
+msgstr ""
+"Для зміни пароля зверніться до системного адміністратора або використовуйте "
+"функцію відновлення пароля."
+
+#: admin_panel/templates/admin_panel/profile.html:107
+msgid "Standard Django admin panel is disabled for system protection."
+msgstr "Стандартна Django адмін панель відключена для захисту системи."
