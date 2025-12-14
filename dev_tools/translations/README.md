@@ -117,6 +117,31 @@ src/locale/
         └── django.mo    # Скомпільований файл
 ```
 
+## JavaScript рішення для перемикання мов
+
+### Проблема з URL префіксами
+Django i18n_patterns створює URL з мовними префіксами, але для мови за замовчуванням (англійська) префікс не додається при `prefix_default_language=False`.
+
+### Рішення
+Використовується JavaScript для динамічного формування правильного URL перед відправкою форми перемикання мови:
+
+```javascript
+// Видаляємо існуючий мовний префікс
+const langPrefixes = ['/uk/', '/en/'];
+langPrefixes.forEach(function(prefix) {
+    if (currentPath.startsWith(prefix)) {
+        currentPath = currentPath.substring(prefix.length - 1);
+    }
+});
+
+// Додаємо новий префікс (крім англійської)
+if (langCode === 'en') {
+    newPath = currentPath;  // Без префікса
+} else {
+    newPath = '/' + langCode + currentPath;  // З префіксом
+}
+```
+
 ## Технічні деталі
 
 ### Формат файлів .po
