@@ -1,0 +1,109 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Налаштування профілю - WHMCS Admin{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-user"></i> Налаштування профілю</h1>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="{% url 'admin_dashboard' %}">Панель управління</a></li>
+                <li class="breadcrumb-item active">Профіль</li>
+            </ol>
+        </nav>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-edit"></i> Редагувати профіль</h5>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="first_name" class="form-label">Ім'я</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" 
+                                       value="{{ user.first_name }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="last_name" class="form-label">Прізвище</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" 
+                                       value="{{ user.last_name }}">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" 
+                               value="{{ user.email }}">
+                    </div>
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Логін</label>
+                        <input type="text" class="form-control" id="username" value="{{ user.username }}" disabled>
+                        <div class="form-text">Логін не можна змінити</div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> Зберегти зміни
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle"></i> Інформація про акаунт</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <td><strong>Логін:</strong></td>
+                        <td>{{ user.username }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Статус:</strong></td>
+                        <td>
+                            {% if user.is_superuser %}
+                                <span class="badge bg-danger">Суперадміністратор</span>
+                            {% elif user.is_staff %}
+                                <span class="badge bg-warning">Адміністратор</span>
+                            {% else %}
+                                <span class="badge bg-secondary">Користувач</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>Дата реєстрації:</strong></td>
+                        <td>{{ user.date_joined|date:"d.m.Y" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Останній вхід:</strong></td>
+                        <td>{{ user.last_login|date:"d.m.Y H:i"|default:"Ніколи" }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="card mt-3">
+            <div class="card-header">
+                <h5><i class="fas fa-shield-alt"></i> Безпека</h5>
+            </div>
+            <div class="card-body">
+                <p class="text-muted">Для зміни пароля зверніться до системного адміністратора або використовуйте функцію відновлення пароля.</p>
+                <div class="alert alert-info">
+                    <i class="fas fa-info-circle"></i>
+                    <strong>Безпека:</strong> Стандартна Django адмін панель відключена для захисту системи.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

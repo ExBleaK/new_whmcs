@@ -1,0 +1,112 @@
+{% extends 'admin_panel/base.html' %}
+
+{% block title %}Панель управління - WHMCS Admin{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <h1><i class="fas fa-tachometer-alt"></i> Панель управління</h1>
+        <p class="text-muted">Ласкаво просимо, {{ user.get_full_name|default:user.username }}!</p>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-3">
+        <div class="card text-white bg-primary">
+            <div class="card-header">
+                <i class="fas fa-users"></i> Користувачі
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">Всього користувачів</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-success">
+            <div class="card-header">
+                <i class="fas fa-server"></i> Сервіси
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">Активних сервісів</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-warning">
+            <div class="card-header">
+                <i class="fas fa-file-invoice-dollar"></i> Рахунки
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">Неоплачених рахунків</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card text-white bg-info">
+            <div class="card-header">
+                <i class="fas fa-ticket-alt"></i> Тікети
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">0</h4>
+                <p class="card-text">Відкритих тікетів</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-chart-line"></i> Швидкі дії</h5>
+            </div>
+            <div class="card-body">
+                <div class="list-group">
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-user-plus"></i> Додати нового клієнта
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-plus"></i> Створити новий сервіс
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action">
+                        <i class="fas fa-file-invoice"></i> Створити рахунок
+                    </a>
+                    <a href="{% url 'admin_profile' %}" class="list-group-item list-group-item-action">
+                        <i class="fas fa-cog"></i> Налаштування профілю
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-header">
+                <h5><i class="fas fa-info-circle"></i> Інформація про систему</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <td><strong>Версія Django:</strong></td>
+                        <td>6.0</td>
+                    </tr>
+                    <tr>
+                        <td><strong>База даних:</strong></td>
+                        <td>PostgreSQL</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Останній вхід:</strong></td>
+                        <td>{{ user.last_login|date:"d.m.Y H:i" }}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Статус:</strong></td>
+                        <td><span class="badge bg-success">Онлайн</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
